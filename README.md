@@ -1,10 +1,11 @@
 #Instructions to run the project (You'd need to have docker installed in your system):
   1) git clone https://github.com/Parjanya7/task-management-system.git
-  2) docker-compose up -d --build
-  3) docker exec -it task-management-system /bin/sh
-  4) npx prisma generate
-  5) npx prisma migrate dev --name first
-  6) exit
+  2) cd task-management-system
+  3) docker-compose up -d --build
+  4) docker exec -it task-management-system /bin/sh
+  5) npx prisma generate
+  6) npx prisma migrate dev --name first
+  7) exit
 
 Now, you can make a GET request to http://localhost:3000/ to see output: "Hello World!", Which will make sure that our service is up and running.
 
