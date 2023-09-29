@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  task-management-system:
+    container_name: task-management-system
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/task_manager_db?schema=dev_schema
+      NODE_ENV: development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - task-manager-network
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: task_manager_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 6500:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - task-manager-network
+
+volumes:
+  postgres_data:
+
+networks:
+  task-manager-network:
